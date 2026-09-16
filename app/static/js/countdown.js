@@ -44,33 +44,32 @@ function tickCountdowns() {
   return anyPending;
 }
 
-function formatLocalUnlock(iso, { withZone }) {
+function formatLocalUnlock(iso) {
   const date = new Date(iso);
   const pad = (n) => String(n).padStart(2, "0");
 
-  const year = date.getFullYear();
-  const month = pad(date.getMonth() + 1);
-  const day = pad(date.getDate());
   const hour = pad(date.getHours());
   const minute = pad(date.getMinutes());
+  const time = `${hour}:${minute}`;
 
-  let text = `${year}-${month}-${day} ${hour}:${minute}`;
+  const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const dayDiff = Math.round((startOfDay(date) - startOfDay(new Date())) / 86400000);
 
-  if (withZone) {
-    const zone = new Intl.DateTimeFormat(undefined, { timeZoneName: "short" })
-      .formatToParts(date)
-      .find((part) => part.type === "timeZoneName").value;
-    text += ` ${zone}`;
+  if (dayDiff === 0) {
+    return time;
   }
-
-  return text;
+  if (dayDiff > 0 && dayDiff <= 6) {
+    const weekday = new Intl.DateTimeFormat(undefined, { weekday: "short" }).format(date);
+    return `${weekday} ${time}`;
+  }
+  const day = pad(date.getDate());
+  const month = pad(date.getMonth() + 1);
+  return `${day}.${month}. ${time}`;
 }
 
 function renderLocalUnlockTimes() {
   document.querySelectorAll(".unlock-local[data-unlock]").forEach((el) => {
-    // The day page (a <strong>) spells out the zone; grid tiles (a <span>) stay compact.
-    const withZone = el.tagName === "STRONG";
-    el.textContent = formatLocalUnlock(el.dataset.unlock, { withZone });
+    el.textContent = formatLocalUnlock(el.dataset.unlock);
   });
 }
 

@@ -1,6 +1,6 @@
 import json
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
 from flask import current_app
@@ -18,6 +18,9 @@ class Day:
 
     def is_unlocked(self, now: datetime) -> bool:
         return self.is_cover or now >= self.unlock_at
+
+    def unlock_at_utc_str(self) -> str:
+        return self.unlock_at.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 
 def _tz() -> ZoneInfo:

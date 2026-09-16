@@ -8,7 +8,7 @@
 {% if locked %}
   <article class="locked-day">
     <h1>{{ day.title }}</h1>
-    <p>&#128274; This day unlocks at <strong class="unlock-local" data-unlock="{{ day.unlock_at.isoformat() }}">{{ day.unlock_at.strftime('%Y-%m-%d %H:%M') }}</strong>.</p>
+    <p>&#128274; This day unlocks at <strong>{{ day.unlock_at_utc_str() }}</strong>.</p>
   </article>
 {% else %}
   <h1>{{ day.title }}</h1>
