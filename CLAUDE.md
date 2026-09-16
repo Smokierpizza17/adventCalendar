@@ -23,7 +23,9 @@ reveals on its own page.
   "unlock_at": "2026-12-01T00:00:00",
   "title": "Day 1",
   "photo": "day01_photo.png",
-  "note": "day01_note.png"
+  "note": "day01_note.png",
+  "month": "December 2026",
+  "is_cover": false
 }
 ```
 
@@ -31,6 +33,11 @@ reveals on its own page.
   `Asia/Tokyo`, override with the `ADVENT_TIMEZONE` env var).
 - `photo` and `note` are both filenames under `app/static/images/` — `photo` is the
   photo, `note` is a photo/scan of the handwritten note. Both unlock together.
+- `month` groups entries on the grid page (`/`) — entries are grouped in file order,
+  not sorted alphabetically, so keep same-month entries contiguous in `days.json`.
+- `is_cover` (optional, default `false`) marks an entry as front-matter rather than a
+  numbered day: it always renders unlocked regardless of `unlock_at`, and the grid
+  shows it as a distinct chip instead of a day number.
 - Add/edit entries directly in this file — there's no admin UI or database.
 
 ## Running locally

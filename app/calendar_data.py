@@ -13,9 +13,11 @@ class Day:
     title: str
     photo: str
     note: str
+    month: str
+    is_cover: bool = False
 
     def is_unlocked(self, now: datetime) -> bool:
-        return now >= self.unlock_at
+        return self.is_cover or now >= self.unlock_at
 
 
 def _tz() -> ZoneInfo:
@@ -34,6 +36,8 @@ def load_days() -> list[Day]:
             title=entry["title"],
             photo=entry["photo"],
             note=entry["note"],
+            month=entry["month"],
+            is_cover=entry.get("is_cover", False),
         )
         for entry in raw
     ]

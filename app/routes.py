@@ -1,3 +1,5 @@
+from itertools import groupby
+
 from flask import Blueprint, abort, render_template
 
 from . import calendar_data
@@ -9,7 +11,8 @@ bp = Blueprint("calendar", __name__)
 def index():
     current_time = calendar_data.now()
     days = load_days_with_state(current_time)
-    return render_template("index.html", days=days)
+    groups = group_by_month(days)
+    return render_template("index.html", groups=groups)
 
 
 @bp.route("/day/<int:day_id>")
@@ -29,4 +32,11 @@ def load_days_with_state(current_time):
     return [
         {"day": d, "unlocked": d.is_unlocked(current_time)}
         for d in calendar_data.load_days()
+    ]
+
+
+def group_by_month(days_with_state):
+    return [
+        {"month": month, "entries": list(entries)}
+        for month, entries in groupby(days_with_state, key=lambda item: item["day"].month)
     ]

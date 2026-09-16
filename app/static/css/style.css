@@ -5,6 +5,16 @@ body {
   padding: 0 1rem;
 }
 
+.month-group {
+  margin-bottom: 1.5rem;
+}
+
+.month-group h2 {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -30,6 +40,14 @@ body {
 .tile.unlocked {
   background: #c62828;
   color: white;
+}
+
+.tile.cover {
+  background: #2e7d32;
+}
+
+.tile-label {
+  font-size: 0.85rem;
 }
 
 .pair {
