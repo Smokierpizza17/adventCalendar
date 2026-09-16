@@ -1,4 +1,4 @@
-# japAdvent
+# Advent Calendar
 
 A small Flask advent calendar. Each day reveals an image pair once its unlock time has passed.
 
