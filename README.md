@@ -79,6 +79,47 @@ This reads `data/days.json` and writes cropped thumbnails to
 `app/static/images/thumbs/`, skipping any that are already up to date unless
 `--force` is passed.
 
+## Deployment
+
+For production (e.g. running on a Raspberry Pi), serve the app with
+[gunicorn](https://gunicorn.org/) instead of the Flask dev server, managed by
+systemd, and reverse-proxied through Caddy.
+
+```
+pip install gunicorn
+gunicorn -w 2 -b 127.0.0.1:8000 'app:create_app()'
+```
+
+**systemd unit** (`/etc/systemd/system/japadvent.service`):
+
+```ini
+[Unit]
+Description=japAdvent
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/japAdvent
+Environment=ADVENT_TIMEZONE=UTC
+ExecStart=/home/pi/japAdvent/venv/bin/gunicorn -w 2 -b 127.0.0.1:8000 'app:create_app()'
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+sudo systemctl enable --now japadvent
+```
+
+**Caddy** (add to your existing `Caddyfile`):
+
+```
+advent.example.com {
+    reverse_proxy 127.0.0.1:8000
+}
+```
+
 ## Configuration
 
 Set these as environment variables (a `.env` file works via python-dotenv):
