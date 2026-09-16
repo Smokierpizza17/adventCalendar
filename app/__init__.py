@@ -14,6 +14,19 @@ def create_app():
         TIMEZONE=os.environ.get("ADVENT_TIMEZONE", "UTC"),
     )
 
+    @app.url_defaults
+    def add_static_cache_buster(endpoint, values):
+        if (
+            endpoint == "static"
+            and "filename" in values
+            and not values["filename"].startswith("images/")
+        ):
+            file_path = os.path.join(app.static_folder, values["filename"])
+            try:
+                values["v"] = int(os.path.getmtime(file_path))
+            except OSError:
+                pass
+
     from . import routes
 
     app.register_blueprint(routes.bp)
