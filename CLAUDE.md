@@ -40,12 +40,20 @@ reveals on its own page.
   shows it as a distinct chip instead of a day number.
 - Add/edit entries directly in this file — there's no admin UI or database.
 
+## User data (not in git)
+
+`data/days.json` and everything under `app/static/images/` (except `.gitkeep`) are
+gitignored — they hold real unlock dates, titles, and personal photos. `data/days.example.json`
+is checked in as a template; copy it to `data/days.json` and drop your own images into
+`app/static/images/` to populate the calendar locally.
+
 ## Running locally
 
 ```
 python -m venv venv
 venv\Scripts\activate        # PowerShell: venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+copy data\days.example.json data\days.json   # first run only
 python run.py                # http://127.0.0.1:5000
 ```
 

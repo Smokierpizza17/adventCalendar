@@ -1,0 +1,19 @@
+[
+  {
+    "id": 0,
+    "unlock_at": "2026-12-01T00:00:00",
+    "title": "Cover",
+    "photo": "cover.jpg",
+    "note": "cover.jpg",
+    "month": "Cover",
+    "is_cover": true
+  },
+  {
+    "id": 1,
+    "unlock_at": "2026-12-01T00:00:00",
+    "title": "Day 1",
+    "photo": "day01_photo.jpg",
+    "note": "day01_note.jpg",
+    "month": "December 2026"
+  }
+]

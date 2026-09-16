@@ -5,3 +5,9 @@ __pycache__/
 instance/
 *.egg-info/
 .pytest_cache/
+
+# user-populated calendar data (real dates/titles + personal photos) —
+# see data/days.example.json for the format
+data/days.json
+app/static/images/*
+!app/static/images/.gitkeep
