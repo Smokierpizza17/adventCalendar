@@ -11,7 +11,7 @@ class Day:
     id: int
     unlock_at: datetime
     title: str
-    image: str
+    photo: str
     note: str
 
     def is_unlocked(self, now: datetime) -> bool:
@@ -32,7 +32,7 @@ def load_days() -> list[Day]:
             id=entry["id"],
             unlock_at=datetime.fromisoformat(entry["unlock_at"]).replace(tzinfo=tz),
             title=entry["title"],
-            image=entry["image"],
+            photo=entry["photo"],
             note=entry["note"],
         )
         for entry in raw

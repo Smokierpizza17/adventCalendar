@@ -32,8 +32,14 @@ body {
   color: white;
 }
 
-.note {
-  white-space: pre-wrap;
+.pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pair img {
+  flex: 1 1 260px;
 }
 
 img {

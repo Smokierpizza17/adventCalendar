@@ -10,7 +10,9 @@
   <p>This day unlocks at {{ day.unlock_at.strftime('%Y-%m-%d %H:%M %Z') }}.</p>
 {% else %}
   <h1>{{ day.title }}</h1>
-  <img src="{{ url_for('static', filename='images/' + day.image) }}" alt="{{ day.title }}">
-  <p class="note">{{ day.note }}</p>
+  <div class="pair">
+    <img class="photo" src="{{ url_for('static', filename='images/' + day.photo) }}" alt="{{ day.title }} photo">
+    <img class="note" src="{{ url_for('static', filename='images/' + day.note) }}" alt="{{ day.title }} note">
+  </div>
 {% endif %}
 {% endblock %}

@@ -1,7 +1,8 @@
 # japAdvent
 
-A Flask advent calendar. Each day has a photo + note pair that stays locked until
-a predefined unlock time, then reveals on its own page.
+A Flask advent calendar. Each day has an image pair — a photo and a photo of a
+handwritten note — that stays locked until a predefined unlock time, then
+reveals on its own page.
 
 ## Structure
 
@@ -21,14 +22,15 @@ a predefined unlock time, then reveals on its own page.
   "id": 1,
   "unlock_at": "2026-12-01T00:00:00",
   "title": "Day 1",
-  "image": "day01.jpg",
-  "note": "The note text shown once unlocked."
+  "photo": "day01_photo.png",
+  "note": "day01_note.png"
 }
 ```
 
 - `unlock_at` is naive local time, interpreted in the `TIMEZONE` config value (default
   `Asia/Tokyo`, override with the `ADVENT_TIMEZONE` env var).
-- `image` is a filename under `app/static/images/`.
+- `photo` and `note` are both filenames under `app/static/images/` — `photo` is the
+  photo, `note` is a photo/scan of the handwritten note. Both unlock together.
 - Add/edit entries directly in this file — there's no admin UI or database.
 
 ## Running locally
