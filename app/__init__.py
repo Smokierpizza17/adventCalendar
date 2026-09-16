@@ -11,7 +11,7 @@ def create_app():
             "ADVENT_DATA_FILE",
             os.path.join(app.root_path, "..", "data", "days.json"),
         ),
-        TIMEZONE=os.environ.get("ADVENT_TIMEZONE", "Asia/Tokyo"),
+        TIMEZONE=os.environ.get("ADVENT_TIMEZONE", "UTC"),
     )
 
     from . import routes

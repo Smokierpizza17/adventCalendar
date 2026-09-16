@@ -30,7 +30,7 @@ reveals on its own page.
 ```
 
 - `unlock_at` is naive local time, interpreted in the `TIMEZONE` config value (default
-  `Asia/Tokyo`, override with the `ADVENT_TIMEZONE` env var).
+  `UTC`, override with the `ADVENT_TIMEZONE` env var).
 - `photo` and `note` are both filenames under `app/static/images/` — `photo` is the
   photo, `note` is a photo/scan of the handwritten note. Both unlock together.
 - `month` groups entries on the grid page (`/`) — entries are grouped in file order,
