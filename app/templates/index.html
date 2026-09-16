@@ -14,14 +14,17 @@
       {% for item in group.entries %}
         <a class="tile {{ 'cover' if item.day.is_cover }} {{ 'unlocked' if item.unlocked else 'locked' }}"
            href="{{ url_for('calendar.day', day_id=item.day.id) }}">
-          {% if item.day.is_cover %}
-            <span class="tile-label">Cover</span>
-          {% else %}
-            <span class="tile-number">{{ item.day.id }}</span>
-          {% endif %}
-          {% if not item.unlocked %}
-            <span class="lock-icon">&#128274;</span>
-          {% endif %}
+          <span class="tile-bg" style="background-image: url({{ url_for('static', filename='images/thumbs/' ~ item.day.photo) }})"></span>
+          <span class="tile-overlay">
+            {% if item.day.is_cover %}
+              <span class="tile-label">Cover</span>
+            {% else %}
+              <span class="tile-number">{{ item.day.id }}</span>
+            {% endif %}
+            {% if not item.unlocked %}
+              <span class="countdown" data-unlock="{{ item.day.unlock_at.isoformat() }}">&#128274;</span>
+            {% endif %}
+          </span>
         </a>
       {% endfor %}
     </div>
