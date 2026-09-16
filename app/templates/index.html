@@ -23,6 +23,7 @@
             {% endif %}
             {% if not item.unlocked %}
               <span class="countdown" data-unlock="{{ item.day.unlock_at.isoformat() }}">&#128274;</span>
+              <span class="unlock-local" data-unlock="{{ item.day.unlock_at.isoformat() }}"></span>
             {% endif %}
           </span>
         </a>

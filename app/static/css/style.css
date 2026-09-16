@@ -85,6 +85,12 @@
   color: var(--pico-muted-color);
 }
 
+.tile .unlock-local {
+  font-size: 0.65rem;
+  color: var(--pico-muted-color);
+  text-align: center;
+}
+
 .back-link {
   display: inline-block;
   margin-bottom: 1.5rem;

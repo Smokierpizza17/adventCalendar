@@ -39,7 +39,39 @@ function tickCountdowns() {
   return anyPending;
 }
 
+function formatLocalUnlock(iso, { withZone }) {
+  const date = new Date(iso);
+  const pad = (n) => String(n).padStart(2, "0");
+
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hour = pad(date.getHours());
+  const minute = pad(date.getMinutes());
+
+  let text = `${year}-${month}-${day} ${hour}:${minute}`;
+
+  if (withZone) {
+    const zone = new Intl.DateTimeFormat(undefined, { timeZoneName: "short" })
+      .formatToParts(date)
+      .find((part) => part.type === "timeZoneName").value;
+    text += ` ${zone}`;
+  }
+
+  return text;
+}
+
+function renderLocalUnlockTimes() {
+  document.querySelectorAll(".unlock-local[data-unlock]").forEach((el) => {
+    // The day page (a <strong>) spells out the zone; grid tiles (a <span>) stay compact.
+    const withZone = el.tagName === "STRONG";
+    el.textContent = formatLocalUnlock(el.dataset.unlock, { withZone });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  renderLocalUnlockTimes();
+
   if (tickCountdowns()) {
     setInterval(tickCountdowns, 1000);
   }
