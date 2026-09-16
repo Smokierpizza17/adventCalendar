@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Advent Calendar{% endblock %}
+
+{% block content %}
+<h1>Advent Calendar</h1>
+<div class="grid">
+  {% for item in days %}
+    <a class="tile {{ 'unlocked' if item.unlocked else 'locked' }}"
+       href="{{ url_for('calendar.day', day_id=item.day.id) }}">
+      <span class="tile-number">{{ item.day.id }}</span>
+      {% if not item.unlocked %}
+        <span class="lock-icon">&#128274;</span>
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}

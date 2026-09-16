@@ -1,0 +1,42 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.tile.locked {
+  background: #ccc;
+  color: #666;
+}
+
+.tile.unlocked {
+  background: #c62828;
+  color: white;
+}
+
+.note {
+  white-space: pre-wrap;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 8px;
+}

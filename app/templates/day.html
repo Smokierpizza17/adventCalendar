@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ day.title }}{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('calendar.index') }}">&larr; Back</a>
+
+{% if locked %}
+  <h1>{{ day.title }}</h1>
+  <p>This day unlocks at {{ day.unlock_at.strftime('%Y-%m-%d %H:%M %Z') }}.</p>
+{% else %}
+  <h1>{{ day.title }}</h1>
+  <img src="{{ url_for('static', filename='images/' + day.image) }}" alt="{{ day.title }}">
+  <p class="note">{{ day.note }}</p>
+{% endif %}
+{% endblock %}
