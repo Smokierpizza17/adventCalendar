@@ -2,6 +2,10 @@
   --tile-locked-bg: var(--pico-muted-border-color);
 }
 
+.emoji {
+  font-family: "Noto Color Emoji", sans-serif;
+}
+
 .month-group {
   margin-bottom: 2rem;
 }
@@ -81,8 +85,8 @@
   color: #fff;
 }
 
-.countdown.has-days {
-  color: var(--pico-muted-color);
+.countdown.urgent {
+  color: #FFBF00;
 }
 
 .tile .unlock-local {

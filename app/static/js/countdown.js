@@ -7,11 +7,15 @@ function formatRemaining(ms) {
   const pad = (n) => String(n).padStart(2, "0");
 
   const text = days > 0
-    ? `${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`
-    : `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+    ? `${days}d ${pad(hours)}h ${pad(minutes)}m`
+    : hours > 0
+    ? `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`
+    : `${pad(minutes)}m ${pad(seconds)}s`;
 
   return { text, hasDays: days > 0 };
 }
+
+const URGENT_THRESHOLD_MS = 60 * 60 * 1000;
 
 function tickCountdowns() {
   const elements = document.querySelectorAll(".countdown[data-unlock]");
@@ -23,7 +27,7 @@ function tickCountdowns() {
 
     if (remaining <= 0) {
       el.textContent = "unlocking…";
-      el.classList.remove("has-days");
+      el.classList.remove("has-days", "urgent");
       if (!el.dataset.reloadQueued) {
         el.dataset.reloadQueued = "1";
         setTimeout(() => window.location.reload(), 1000);
@@ -32,6 +36,7 @@ function tickCountdowns() {
       const { text, hasDays } = formatRemaining(remaining);
       el.textContent = text;
       el.classList.toggle("has-days", hasDays);
+      el.classList.toggle("urgent", remaining < URGENT_THRESHOLD_MS);
       anyPending = true;
     }
   });
