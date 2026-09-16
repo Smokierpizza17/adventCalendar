@@ -41,7 +41,7 @@ def load_days() -> list[Day]:
         )
         for entry in raw
     ]
-    return sorted(days, key=lambda d: d.unlock_at)
+    return days
 
 
 def get_day(day_id: int) -> Day | None:

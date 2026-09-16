@@ -3,11 +3,13 @@
 {% block title %}{{ day.title }}{% endblock %}
 
 {% block content %}
-<a href="{{ url_for('calendar.index') }}">&larr; Back</a>
+<a href="{{ url_for('calendar.index') }}" role="button" class="outline secondary back-link">&larr; Back</a>
 
 {% if locked %}
-  <h1>{{ day.title }}</h1>
-  <p>This day unlocks at {{ day.unlock_at.strftime('%Y-%m-%d %H:%M %Z') }}.</p>
+  <article class="locked-day">
+    <h1>{{ day.title }}</h1>
+    <p>&#128274; This day unlocks at <strong>{{ day.unlock_at.strftime('%Y-%m-%d %H:%M %Z') }}</strong>.</p>
+  </article>
 {% else %}
   <h1>{{ day.title }}</h1>
   <div class="pair">

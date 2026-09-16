@@ -3,7 +3,10 @@
 {% block title %}Advent Calendar{% endblock %}
 
 {% block content %}
-<h1>Advent Calendar</h1>
+<hgroup>
+  <h1>Advent Calendar</h1>
+  <p>Click a day to reveal its photo and note.</p>
+</hgroup>
 {% for group in groups %}
   <section class="month-group">
     <h2>{{ group.month }}</h2>

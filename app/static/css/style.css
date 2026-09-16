@@ -1,53 +1,80 @@
-body {
-  font-family: system-ui, sans-serif;
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+:root {
+  --tile-locked-bg: var(--pico-muted-border-color);
+  --tile-locked-color: var(--pico-muted-color);
+  --tile-unlocked-bg: #c62828;
+  --tile-unlocked-color: #fff;
+  --tile-cover-bg: #2e7d32;
 }
 
 .month-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .month-group h2 {
   font-size: 1rem;
-  color: #666;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--pico-muted-color);
+  margin-bottom: 0.75rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 0.6rem;
 }
 
 .tile {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: var(--pico-border-radius);
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pico-card-box-shadow);
 }
 
 .tile.locked {
-  background: #ccc;
-  color: #666;
+  background: var(--tile-locked-bg);
+  color: var(--tile-locked-color);
 }
 
 .tile.unlocked {
-  background: #c62828;
-  color: white;
+  background: var(--tile-unlocked-bg);
+  color: var(--tile-unlocked-color);
 }
 
 .tile.cover {
-  background: #2e7d32;
+  background: var(--tile-cover-bg);
+  color: #fff;
 }
 
 .tile-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+}
+
+.lock-icon {
+  position: absolute;
+  bottom: 0.25rem;
+  right: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  width: auto;
+}
+
+.locked-day {
+  text-align: center;
 }
 
 .pair {
@@ -62,5 +89,6 @@ body {
 
 img {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: var(--pico-border-radius);
+  box-shadow: var(--pico-card-box-shadow);
 }
